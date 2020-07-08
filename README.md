@@ -1,6 +1,6 @@
 # FFLib ApexMocks Framework
 
-ApexMocks is a mocking framework for the Salesforce Lightning Apex language. 
+ApexMocks is a mocking framework for the Salesforce Lightning Apex language.
 
 It derives its inspiration from the well known Java mocking framework [Mockito](https://code.google.com/p/mockito/)
 
@@ -14,12 +14,15 @@ It derives its inspiration from the well known Java mocking framework [Mockito](
 ApexMocks allows you to write tests to both verify behavior and stub dependencies.
 
 An assumption is made that you are using some form of [Dependency Injection](http://en.wikipedia.org/wiki/Dependency_injection) - for example passing dependencies via a constructor:
+
 ```Java
 public MyClass(ClassA.IClassA dependencyA, ClassB.IClassB dependencyB)
 ```
+
 This allows you to pass mock implementations of dependencies A and B when you want to unit test MyClass.
 
 Lets assume we've written our own list interface fflib_MyList.IList that we want to either verify or stub:
+
 ```Java
 public class fflib_MyList implements IList
 {
@@ -32,7 +35,9 @@ public class fflib_MyList implements IList
 	}
 }
 ```
+
 ### verify() behaviour verification
+
 ```Java
 // Given
 fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -45,7 +50,9 @@ mockList.add('bob');
 ((fflib_MyList.IList) mocks.verify(mockList)).add('bob');
 ((fflib_MyList.IList) mocks.verify(mockList, fflib_ApexMocks.NEVER)).clear();
 ```
+
 ### when() dependency stubbing
+
 ```Java
 fflib_ApexMocks mocks = new fflib_ApexMocks();
 fflib_MyList.IList mockList = (fflib_MyList.IList)mocks.mock(fflib_MyList.class);
@@ -72,19 +79,23 @@ System.assertEquals(mockFormulaResult, acc.Your_Formula_Field__c);
 ```
 
 ## Stub API
+
 ApexMocks now implements the [Stub API](https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_testing_stub_api.htm)!
 
 Previously, stub objects had to be generated using the ApexMocks generator at compile time.
 Now, stub objects can be generated dynamically at run time.
+
 ```Java
 fflib_ApexMocks mocks = new fflib_ApexMocks();
 fflib_MyList mockList = (fflib_MyList)mocks.mock(fflib_MyList.class);
 ```
+
 You can continue to use the ApexMocks generator, if you wish, but this is no longer a prerequisite to using ApexMocks.
 
 ## Generating Mock files
 
 Run the apex mocks generator from the command line.
+
 ```Bash
 java -jar apex-mocks-generator-4.0.0.jar
 	<Filepath to source files>
@@ -98,23 +109,64 @@ java -jar apex-mocks-generator-4.0.0.jar "/Users/jbloggs/Dev/fflib-apex-mocks/sr
 ```
 
 Instantiate the generated classes as follows:
+
 ```Java
 fflib_ApexMocks mocks = new fflib_ApexMocks();
 fflib_MyList.IList mockList = new MockMyList(mocks);
 ```
+
 ## Documentation
 
-* [ApexMocks Framework Tutorial](http://code4cloud.wordpress.com/2014/05/06/apexmocks-framework-tutorial/)
-* [Simple Dependency Injection](http://code4cloud.wordpress.com/2014/05/09/simple-dependency-injection/)
-* [ApexMocks Generator](http://code4cloud.wordpress.com/2014/05/15/using-apex-mocks-generator-to-create-mock-class-definitions/)
-* [Behaviour Verification](http://code4cloud.wordpress.com/2014/05/15/writing-behaviour-verification-unit-tests/)
-* [Stubbing Dependencies](http://code4cloud.wordpress.com/2014/05/15/stubbing-dependencies-in-a-unit-test/)
-* [Supported Features](http://code4cloud.wordpress.com/2014/05/15/apexmocks-supported-features/)
-* [New Improved apex-mocks-generator](http://code4cloud.wordpress.com/2014/06/27/new-improved-apex-mocks-generator/)
-* [ApexMocks Improvements - exception stubbing, base classes and more](http://code4cloud.wordpress.com/2014/11/05/apexmocks-improvements-exception-stubbing-inner-interfaces-and-mock-base-classes/)
-* [Matchers](http://superdupercode.blogspot.co.uk/2016/03/apex-mocks-matchers.html)
-* [ApexMock blogs from Jesse Altman](http://jessealtman.com/tag/apexmocks/)
-* [Order of calls verification](https://xonoxforce.wordpress.com/2017/03/26/inorder-verify/)
-* [Answering](https://xonoxforce.wordpress.com/2017/03/31/answering-with-apex-mocks/)
-* [Counters](https://xonoxforce.wordpress.com/2017/04/01/counters-in-apex-mocks-verifications/)
-* [Troubleshooting](https://salesforce.stackexchange.com/questions/252460/my-apexmocks-arent-working-what-could-be-wrong)
+- [ApexMocks Framework Tutorial](http://code4cloud.wordpress.com/2014/05/06/apexmocks-framework-tutorial/)
+- [Simple Dependency Injection](http://code4cloud.wordpress.com/2014/05/09/simple-dependency-injection/)
+- [ApexMocks Generator](http://code4cloud.wordpress.com/2014/05/15/using-apex-mocks-generator-to-create-mock-class-definitions/)
+- [Behaviour Verification](http://code4cloud.wordpress.com/2014/05/15/writing-behaviour-verification-unit-tests/)
+- [Stubbing Dependencies](http://code4cloud.wordpress.com/2014/05/15/stubbing-dependencies-in-a-unit-test/)
+- [Supported Features](http://code4cloud.wordpress.com/2014/05/15/apexmocks-supported-features/)
+- [New Improved apex-mocks-generator](http://code4cloud.wordpress.com/2014/06/27/new-improved-apex-mocks-generator/)
+- [ApexMocks Improvements - exception stubbing, base classes and more](http://code4cloud.wordpress.com/2014/11/05/apexmocks-improvements-exception-stubbing-inner-interfaces-and-mock-base-classes/)
+- [Matchers](http://superdupercode.blogspot.co.uk/2016/03/apex-mocks-matchers.html)
+- [ApexMock blogs from Jesse Altman](http://jessealtman.com/tag/apexmocks/)
+- [Order of calls verification](https://xonoxforce.wordpress.com/2017/03/26/inorder-verify/)
+- [Answering](https://xonoxforce.wordpress.com/2017/03/31/answering-with-apex-mocks/)
+- [Counters](https://xonoxforce.wordpress.com/2017/04/01/counters-in-apex-mocks-verifications/)
+- [Troubleshooting](https://salesforce.stackexchange.com/questions/252460/my-apexmocks-arent-working-what-could-be-wrong)
+
+# How to contribute
+
+Follow the below steps to setup the package
+
+## Install / update Repo Dependencies
+
+Always run: `npm install'
+
+## Install Dependent Packages
+
+For all of the dependencies inside of the packageDirectories, run this command:
+
+`sfdx force:package:install -p $PACKAGE_ID -k $KEY`
+
+## Push Metadata to Scratch Org
+
+`sfdx force:source:push`
+
+# Deploying
+
+### Create Package (Run once)
+
+`sfdx force:package:create --name "ApexMocks Framework" --path sfdx-source/apex-mocks \--packagetype Unlocked`
+
+### Create New Version
+
+`sfdx force:package:version:create --package "ApexMocks Framework" --path sfdx-source/apex-mocks --installationkey $KEY --definitionfile config/project-scratch-def.json --wait 10`
+
+### List Package Versions
+
+Grab the new version that you want to install:
+`sfdx force:package:version:list`
+
+### Install Package
+
+Specify username `--targetusername $ORG_USERNAME` or it will install with your current default connection
+
+`sfdx force:package:install -p $SUBSCRIBER_PACKAGE_VERSION --wait 10 -k "$KEY -a package`
