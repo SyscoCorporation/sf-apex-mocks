@@ -4,7 +4,7 @@
             "path": "sfdx-source/apex-mocks",
             "package": "ApexMocks Framework",
             "versionName": "ver 0.1",
-            "versionNumber": "0.1.0.NEXT",
+            "versionNumber": "0.1.1.NEXT",
             "default": true
         }
     ],
@@ -14,6 +14,8 @@
     "packageAliases": {
         "ApexMocks Framework": "0Ho0y000000PAtLCAW",
         "ApexMocks Framework@0.1.0-1": "04t0y000000u3jzAAA",
-        "ApexMocks Framework@0.1.0-2": "04t0y000000u3k4AAA"
+        "ApexMocks Framework@0.1.0-2": "04t0y000000u3k4AAA",
+        "ApexMocks Framework@0.1.0-3": "04t0y000000u3kdAAA",
+        "ApexMocks Framework@0.1.1-1": "04t0y000000u3kiAAA"
     }
 }
